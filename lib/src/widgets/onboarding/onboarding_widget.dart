@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:life_check/assets/color.dart';
+import 'package:flutter/rendering.dart';
+import 'package:life_check/src/assets/color.dart';
 
 class OnboardingWidget extends StatelessWidget {
+  final String image;
   final String title;
   final String content;
   final VoidCallback onPressed;
 
   const OnboardingWidget({
     super.key,
+    required this.image,
     required this.title,
     required this.content,
     required this.onPressed,
@@ -16,14 +19,19 @@ class OnboardingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      backgroundColor: Colors.white,
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            Image.network(image, width: 230, height: 140),
+            Container(height: 197),
             Text(
               title,
               style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
             ),
+            Container(height: 12),
             Text(
               content,
               style: const TextStyle(
@@ -31,18 +39,26 @@ class OnboardingWidget extends StatelessWidget {
                   fontWeight: FontWeight.normal,
                   color: AppColor.gray700),
             ),
-            ElevatedButton(
-              onPressed: onPressed,
-              style: ElevatedButton.styleFrom(
+            Container(height: 80),
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                  minWidth: double.infinity, minHeight: 60),
+              child: ElevatedButton(
+                onPressed: onPressed,
+                style: ElevatedButton.styleFrom(
                   backgroundColor: AppColor.primary500,
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 40.0, horizontal: 24.0)),
-              child: const Text('다음'),
+                ),
+                child: const Text(
+                  '다음',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
+              ),
             ),
+            Container(height: 40),
           ],
         ),
       ),
