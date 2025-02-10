@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:life_check/pages/onboarding/onboarding_first_page.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  
+
   runApp(const MyApp());
 }
 
@@ -25,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   void initialization() async {
     // 여기에 초기 데이터 로딩이나 필요한 설정을 수행
     await Future.delayed(const Duration(seconds: 2)); // 예시로 2초 대기
-    
+
     // 스플래시 스크린 제거
     FlutterNativeSplash.remove();
   }
@@ -37,7 +38,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const OnboardingFirstPage(),
     );
   }
 }
