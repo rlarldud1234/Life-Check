@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:life_check/src/assets/color.dart';
 
 class OnboardingWidget extends StatelessWidget {
@@ -27,19 +26,26 @@ class OnboardingWidget extends StatelessWidget {
           children: [
             Image.network(image, width: 230, height: 140),
             Container(height: 197),
-            Text(
-              title,
-              style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
-            ),
+            Text(title,
+                style:
+                    const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center),
             Container(height: 12),
-            Text(
-              content,
-              style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.normal,
-                  color: AppColor.gray700),
-            ),
-            Container(height: 80),
+            content != ""
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        content,
+                        style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.normal,
+                            color: AppColor.gray700),
+                      ),
+                      Container(height: 80)
+                    ],
+                  )
+                : Container(height: 59),
             ConstrainedBox(
               constraints: const BoxConstraints(
                   minWidth: double.infinity, minHeight: 60),
@@ -52,8 +58,8 @@ class OnboardingWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: const Text(
-                  '다음',
+                child: Text(
+                  content != "" ? "다음" : "시작하기",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                 ),
               ),
